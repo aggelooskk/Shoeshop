@@ -1,0 +1,77 @@
+const products = [
+    {
+      name: 'Nike Air Max 270',
+      image: '/images/nike_air_max_270.jpg',
+      description:
+        'The Nike Air Max 270 features the first-ever Max Air unit created specifically for Nike Sportswear. It offers excellent cushioning and a sleek, sporty look.',
+      brand: 'Nike',
+      category: 'Shoes',
+      price: 150.00,
+      countInStock: 15,
+      rating: 4.8,
+      numReviews: 20,
+    },
+    {
+      name: 'Adidas Ultraboost 21',
+      image: '/images/adidas_ultraboost_21.jpg',
+      description:
+        'The Adidas Ultraboost 21 brings comfort and energy return to new levels. It features responsive cushioning and a flexible upper that moves with your foot.',
+      brand: 'Adidas',
+      category: 'Shoes',
+      price: 180.00,
+      countInStock: 10,
+      rating: 4.6,
+      numReviews: 18,
+    },
+    {
+      name: 'Puma RS-X',
+      image: '/images/puma_rs_x.jpg',
+      description:
+        'The Puma RS-X reinvents the iconic style with a bold, bulky design and vibrant colors. It offers great support and cushioning for all-day wear.',
+      brand: 'Puma',
+      category: 'Shoes',
+      price: 110.00,
+      countInStock: 12,
+      rating: 4.4,
+      numReviews: 14,
+    },
+    {
+      name: 'New Balance 574',
+      image: '/images/new_balance_574.jpg',
+      description:
+        'The New Balance 574 is a classic sneaker that combines vintage style with modern comfort. It features a durable suede and mesh upper with ENCAP midsole cushioning.',
+      brand: 'New Balance',
+      category: 'Shoes',
+      price: 80.00,
+      countInStock: 20,
+      rating: 4.2,
+      numReviews: 22,
+    },
+    {
+      name: 'Asics Gel-Kayano 27',
+      image: '/images/asics_gel_kayano_27.jpg',
+      description:
+        'The Asics Gel-Kayano 27 is designed for runners seeking stability and comfort. It features advanced cushioning and support technology for a smooth ride.',
+      brand: 'Asics',
+      category: 'Shoes',
+      price: 160.00,
+      countInStock: 8,
+      rating: 4.7,
+      numReviews: 10,
+    },
+    {
+      name: 'Reebok Club C 85',
+      image: '/images/reebok_club_c_85.jpg',
+      description:
+        'The Reebok Club C 85 brings a classic tennis style to your everyday look. It features a soft leather upper and an EVA midsole for lightweight cushioning.',
+      brand: 'Reebok',
+      category: 'Shoes',
+      price: 75.00,
+      countInStock: 5,
+      rating: 4.3,
+      numReviews: 15,
+    },
+  ];
+  
+  export default products;
+  

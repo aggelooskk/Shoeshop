@@ -2,11 +2,10 @@ import React from "react";
 import {
   Navbar,
   Nav,
-  NavLink,
   Container,
   NavbarBrand,
 } from "react-bootstrap";
-
+import { LinkContainer } from "react-router-bootstrap";
 
 const Header = () => {
   return (
@@ -18,15 +17,15 @@ const Header = () => {
             className="justify-content-start"
           >
             <Nav className="mr-auto">
-              <NavLink href="#shop" className="mr-5">
-                SHOP
-              </NavLink>
-              <NavLink href="#reviews" className="mr-5">
-                REVIEWS
-              </NavLink>
-              <NavLink href="#about" className="mr-5">
-                ABOUT
-              </NavLink>
+              <LinkContainer to="/shop" className="mr-5">
+                <Nav.Link>SHOP</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/reviews" className="mr-5">
+                <Nav.Link>REVIEWS</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/about" className="mr-5">
+                <Nav.Link>ABOUT</Nav.Link>
+              </LinkContainer>
             </Nav>
           </Navbar.Collapse>
 
@@ -40,15 +39,15 @@ const Header = () => {
             className="justify-content-end"
           >
             <Nav>
-              <NavLink href="#account" className="ml-5">
-                ACCOUNT
-              </NavLink>
-              <NavLink href="#search" className="ml-5">
-                SEARCH
-              </NavLink>
-              <NavLink href="#cart" className="ml-5">
-                CART
-              </NavLink>
+              <LinkContainer to="/account" className="ml-5">
+                <Nav.Link>ACCOUNT</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/search" className="ml-5">
+                <Nav.Link>SEARCH</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/cart" className="ml-5">
+                <Nav.Link>CART</Nav.Link>
+              </LinkContainer>
             </Nav>
           </Navbar.Collapse>
         </Container>

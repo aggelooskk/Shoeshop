@@ -1,13 +1,13 @@
 import React from 'react'
 import Product from '../Components/Product'
 
-const HomeScreen = () => {
+const ShopScreen = () => {
   return (
     <>
-      <h2>Shoeshop</h2>
+    <h2>ShopScreen</h2>
+    <Product />
     </>
   )
 }
 
-export default HomeScreen
-
+export default ShopScreen
