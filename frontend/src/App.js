@@ -1,12 +1,19 @@
 import React from "react";
+import { Outlet } from "react-router-dom";
 import Header from "./Components/Header";
+import Footer from "./Components/Footer";
+import { Container } from "react-bootstrap";
 
 function App() {
   return (
     <>
-    <Header />
-      <h1>Hello World</h1>
-    
+      <Header />
+      <main className="py-3">
+        <Container>
+         <Outlet />
+        </Container>
+      </main>
+      <Footer />
     </>
   );
 }

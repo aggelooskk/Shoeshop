@@ -1,0 +1,13 @@
+.navbar{
+    font-family: DejaVu Sans Mono, monospace;
+    font-size: large;
+    background-color: aqua;
+}
+
+#shoeshop{
+    font-size: x-large;
+}
+
+main {
+    min-height: 80vh;
+  }

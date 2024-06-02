@@ -4,7 +4,6 @@ import {
   createBrowserRouter as Router,
   createRoutesFromElements,
   Route,
-  RouterProvider,
   createBrowserRouter,
 } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
