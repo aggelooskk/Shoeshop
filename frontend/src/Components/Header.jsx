@@ -29,7 +29,7 @@ const Header = () => {
             </Nav>
           </Navbar.Collapse>
 
-          <NavbarBrand id="shoeshop" className="mx-auto" href="#">
+          <NavbarBrand id="shoeshop" className="mx-auto" href="/">
             SHOESHOP
           </NavbarBrand>
 

@@ -1,13 +1,7 @@
-import React from 'react'
-import Product from '../Components/Product'
+import React from "react";
 
 const HomeScreen = () => {
-  return (
-    <>
-      <h2>Shoeshop</h2>
-    </>
-  )
-}
+  return <>Home HomeScreen</>;
+};
 
-export default HomeScreen
-
+export default HomeScreen;
