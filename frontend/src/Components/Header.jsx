@@ -6,6 +6,8 @@ import {
   NavbarBrand,
 } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
+import Badge from "react-bootstrap/Badge"; 
+import cartSlice from "../slices/cartSlice";
 
 const Header = () => {
   return (
@@ -46,7 +48,15 @@ const Header = () => {
                 <Nav.Link>SEARCH</Nav.Link>
               </LinkContainer>
               <LinkContainer to="/cart" className="ml-5">
-                <Nav.Link>CART</Nav.Link>
+                <Nav.Link>CART
+                <Badge pill bg="danger"
+                        style={{ 
+                            position: "absolute", 
+                            top: "10px"
+                        }}> 
+                        9 
+                    </Badge> 
+                </Nav.Link>
               </LinkContainer>
             </Nav>
           </Navbar.Collapse>

@@ -1,7 +1,7 @@
 const products = [
     {
       name: 'Nike Air Max 270',
-      image: '/images/nike_air_max_270.jpg',
+      image: '/images/airmax270.jpg',
       description:
         'The Nike Air Max 270 features the first-ever Max Air unit created specifically for Nike Sportswear. It offers excellent cushioning and a sleek, sporty look.',
       brand: 'Nike',
@@ -13,7 +13,7 @@ const products = [
     },
     {
       name: 'Adidas Ultraboost 21',
-      image: '/images/adidas_ultraboost_21.jpg',
+      image: '/images/adidasultraboost.jpg',
       description:
         'The Adidas Ultraboost 21 brings comfort and energy return to new levels. It features responsive cushioning and a flexible upper that moves with your foot.',
       brand: 'Adidas',
@@ -25,7 +25,7 @@ const products = [
     },
     {
       name: 'Puma RS-X',
-      image: '/images/puma_rs_x.jpg',
+      image: '/images/pumarsx.jpg',
       description:
         'The Puma RS-X reinvents the iconic style with a bold, bulky design and vibrant colors. It offers great support and cushioning for all-day wear.',
       brand: 'Puma',
@@ -37,7 +37,7 @@ const products = [
     },
     {
       name: 'New Balance 574',
-      image: '/images/new_balance_574.jpg',
+      image: '/images/newbalance.jpg',
       description:
         'The New Balance 574 is a classic sneaker that combines vintage style with modern comfort. It features a durable suede and mesh upper with ENCAP midsole cushioning.',
       brand: 'New Balance',
@@ -49,7 +49,7 @@ const products = [
     },
     {
       name: 'Asics Gel-Kayano 27',
-      image: '/images/asics_gel_kayano_27.jpg',
+      image: '/images/asicsgelkayano27.jpg',
       description:
         'The Asics Gel-Kayano 27 is designed for runners seeking stability and comfort. It features advanced cushioning and support technology for a smooth ride.',
       brand: 'Asics',
@@ -61,7 +61,7 @@ const products = [
     },
     {
       name: 'Reebok Club C 85',
-      image: '/images/reebok_club_c_85.jpg',
+      image: '/images/reebokclubc85.jpg',
       description:
         'The Reebok Club C 85 brings a classic tennis style to your everyday look. It features a soft leather upper and an EVA midsole for lightweight cushioning.',
       brand: 'Reebok',
