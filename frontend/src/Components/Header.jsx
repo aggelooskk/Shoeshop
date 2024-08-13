@@ -1,15 +1,16 @@
 import React from "react";
-import {
-  Navbar,
-  Nav,
-  Container,
-  NavbarBrand,
-} from "react-bootstrap";
+import { useSelector } from "react-redux";
+import { Navbar, Nav, Container, NavbarBrand } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-import Badge from "react-bootstrap/Badge"; 
-import cartSlice from "../slices/cartSlice";
+import Badge from "react-bootstrap/Badge";
+
 
 const Header = () => {
+
+  const totalQty = useSelector((state) =>
+    state.cart.cartItems.reduce((acc, item) => acc + item.qty, 0)
+  );
+
   return (
     <header>
       <Navbar bg="light" expand="lg">
@@ -48,14 +49,21 @@ const Header = () => {
                 <Nav.Link>SEARCH</Nav.Link>
               </LinkContainer>
               <LinkContainer to="/cart" className="ml-5">
-                <Nav.Link>CART
-                <Badge pill bg="danger"
-                        style={{ 
-                            position: "absolute", 
-                            top: "10px"
-                        }}> 
-                        9 
-                    </Badge> 
+                <Nav.Link>
+                  CART
+                  {totalQty > 0 && (
+                    <Badge
+                      pill
+                      bg="danger"
+                      style={{
+                        top: "10px",
+                        right: "10px",
+                       
+                      }}
+                    >
+                      {totalQty}
+                    </Badge>
+                  )}
                 </Nav.Link>
               </LinkContainer>
             </Nav>

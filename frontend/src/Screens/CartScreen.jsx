@@ -13,6 +13,7 @@ import {
 import { Link } from "react-router-dom";
 import { removeFromCart, updateCartQty } from "../slices/cartSlice";
 import Message from "../Components/Message";
+import { FaTrash } from "react-icons/fa";
 
 const CartScreen = () => {
   const dispatch = useDispatch();
@@ -67,7 +68,7 @@ const CartScreen = () => {
                       variant="light"
                       onClick={() => removeFromCartHandler(item._id)}
                     >
-                      <i className="fas fa-trash"></i>
+                      <FaTrash />
                     </Button>
                   </Col>
                 </Row>
