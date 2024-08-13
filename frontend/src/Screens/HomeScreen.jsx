@@ -5,6 +5,7 @@ import ProductCarousel from "../Components/ProductCarousel";
 const HomeScreen = () => {
   return <>
   <ProductCarousel />
+  
   </>;
 };
 

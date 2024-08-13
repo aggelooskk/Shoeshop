@@ -14,6 +14,7 @@ import HomeScreen from "./Screens/HomeScreen";
 import reportWebVitals from "./reportWebVitals";
 import ShopScreen from "./Screens/ShopScreen";
 import CartScreen from "./Screens/CartScreen";
+import AccountScreen from "./Screens/AccountScreen";
 import store from "./store";
 import { Provider } from "react-redux";
 
@@ -23,6 +24,7 @@ const router = createBrowserRouter(
       <Route index={true} element={<HomeScreen />} />
       <Route path="/shop" element={<ShopScreen />} />
       <Route path="/cart" element={<CartScreen />} />
+      <Route path="/account" element={<AccountScreen />} />
     </Route>
   )
 );

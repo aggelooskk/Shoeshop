@@ -1,26 +1,46 @@
-.navbar{
-    font-family: DejaVu Sans Mono, monospace;
-    font-size: large;
-    background-color: aqua;
+.navbar {
+  font-family: DejaVu Sans Mono, monospace;
+  font-size: large;
+  background-color: aqua;
 }
 
-#shoeshop{
-    font-size: x-large;
+#shoeshop {
+  font-size: x-large;
 }
 
 main {
-    min-height: 80vh;
-  }
+  min-height: 80vh;
+}
 
-  .rating-text {
-    font-size: 0.8rem;
-    font-weight: 600;
-    padding-left: 0.5rem;
-  }
-  
-  .product-title {
-    height: 2.5em; /* Set a fixed height */
-    overflow: hidden; /* Hide overflow content */
-    text-overflow: ellipsis; /* Add ellipsis for long text */
-    white-space: nowrap; /* Prevent wrapping */
-  }
+.rating-text {
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding-left: 0.5rem;
+}
+
+.product-title {
+  height: 2.5em; /* Set a fixed height */
+  overflow: hidden; /* Hide overflow content */
+  text-overflow: ellipsis; /* Add ellipsis for long text */
+  white-space: nowrap; /* Prevent wrapping */
+}
+
+.carousel {
+  max-width: 1000px; /* Adjust to fit your design */
+  margin: auto; /* Center the carousel */
+  margin-top: 30px;
+}
+
+.carousel-caption {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.carousel-item {
+  max-height: 600px; /* Adjust this to fit your needs */
+  overflow: hidden;
+}
