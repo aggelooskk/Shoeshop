@@ -1,13 +1,12 @@
-// routes/productRoutes.js
 import express from "express";
-import Product from "../models/productModel.js";
+import User from "../models/userModel.js";
 
 const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
-    const products = await Product.find({});
-    res.json(products);
+    const users = await User.find({});
+    res.json(users);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
