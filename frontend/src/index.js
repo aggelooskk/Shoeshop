@@ -15,6 +15,8 @@ import reportWebVitals from "./reportWebVitals";
 import ShopScreen from "./Screens/ShopScreen";
 import CartScreen from "./Screens/CartScreen";
 import AccountScreen from "./Screens/AccountScreen";
+import RegisterScreen from "./Screens/RegisterScreen";
+import LoginScreen from "./Screens/LoginScreen";
 import store from "./store";
 import { Provider } from "react-redux";
 
@@ -25,6 +27,8 @@ const router = createBrowserRouter(
       <Route path="/shop" element={<ShopScreen />} />
       <Route path="/cart" element={<CartScreen />} />
       <Route path="/account" element={<AccountScreen />} />
+      <Route path="/register" element={<RegisterScreen />} />
+      <Route path="/login" element={<LoginScreen />} />
     </Route>
   )
 );
