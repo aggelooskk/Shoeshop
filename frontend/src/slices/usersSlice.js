@@ -11,10 +11,10 @@ const usersSlice = createSlice({
   name: "users",
   initialState,
   reducers: {
-    setUsers: (state, action) => {
+    registerUsers: (state, action) => {
       state.users = action.payload;
     },
-    setUser: (state, action) => {
+    registerUser: (state, action) => {
       state.user = action.payload;
     },
     setLoading: (state, action) => {
@@ -41,8 +41,8 @@ const usersSlice = createSlice({
 });
 
 export const {
-  setUsers,
-  setUser,
+  registerUsers,
+  registerUser,
   setLoading,
   setError,
   addUser,
