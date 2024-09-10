@@ -1,5 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, Link } from "react-router-dom";
 import {
   Form,
   Button,
@@ -9,33 +10,66 @@ import {
   FormLabel,
   FormControl,
 } from "react-bootstrap";
+import { loginUser } from "../slices/usersSlice";
+import { toast } from "react-toastify";
 
-const LoginScreen = () => {
+const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  
+  const { user, loading, error } = useSelector((state) => state.users);
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    try {
+      const resultAction = await dispatch(loginUser({ email, password }));
+      if (loginUser.fulfilled.match(resultAction)) {
+        navigate("/");
+      } else {
+        toast.error(resultAction.payload);
+      }
+    } catch (err) {
+      toast.error("An error occurred");
+    }
+  };
+
   return (
-    <>
-      <Form>
-        <h1>Sign In</h1>
-        <Form>
-          <FormGroup controlId="email" className="my-3">
-            <FormLabel>Email Address</FormLabel>
-            <FormControl type="email" placeholder="Enter Email" />
-          </FormGroup>
-          <FormGroup controlId="password" className="my-3">
-            <FormLabel>Password</FormLabel>
-            <FormControl type="password" placeholder="Password" />
-          </FormGroup>
-          <Button type="submit" variant="dark" className="mt-3">
-            Sign In
-          </Button>
-        </Form>
-        <Row className="py-3">
-          <Col>
-            New Customer? <Link to={"/register"}>Register</Link>
-          </Col>
-        </Row>
-      </Form>
-    </>
+    <Form onSubmit={submitHandler}>
+      <h1>Sign In</h1>
+      <FormGroup controlId="email" className="my-3">
+        <FormLabel>Email Address</FormLabel>
+        <FormControl
+          type="email"
+          placeholder="Enter Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+      </FormGroup>
+
+      <FormGroup controlId="password" className="my-3">
+        <FormLabel>Password</FormLabel>
+        <FormControl
+          type="password"
+          placeholder="Enter Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </FormGroup>
+
+      <Button type="submit" variant="dark" className="mt-3" disabled={loading}>
+        {loading ? "Loading..." : "Sign In"}
+      </Button>
+
+      <Row className="py-3">
+        <Col>
+          New Customer? <Link to="/register">Register</Link>
+        </Col>
+      </Row>
+    </Form>
   );
 };
 
-export default LoginScreen;
+export default Login;

@@ -1,9 +1,7 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector} from "react-redux";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, Link } from "react-router-dom";
 import {
-  Container,
   Form,
   Button,
   Row,
@@ -12,9 +10,10 @@ import {
   FormLabel,
   FormControl,
 } from "react-bootstrap";
+import { registerUser } from "../slices/usersSlice";
 import { toast } from "react-toastify";
 
-const RegisterScreen = () => {
+const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -23,91 +22,84 @@ const RegisterScreen = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const { loading, error } = useSelector((state) => state.users);
 
-  const { userInfo } = useSelector((state) => state.auth);
-
-{/*
-  useEffect(() => {
-    if (userInfo) {
-      navigate("/");
-    }
-  }, [userInfo, navigate]);
-*/}
   const submitHandler = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      toast.error("Password do not match");
+      toast.error("Passwords do not match");
       return;
-    } else {
-      try {
-        const res = await ({ name, email, password }).unwrap();
-        dispatch(setCredentials({ ...res }));
+    }
+    try {
+      const resultAction = await dispatch(
+        registerUser({ name, email, password })
+      );
+      if (registerUser.fulfilled.match(resultAction)) {
+        toast.success("Registration successful!");
         navigate("/");
-      } catch (err) {
-        toast.error(err?.message || err?.error);
+        
+      } else {
+        toast.error(resultAction.payload);
       }
+    } catch (err) {
+      toast.error("An error occurred");
     }
   };
 
   return (
-    <Container>
+    <Form onSubmit={submitHandler}>
       <h1>Sign Up</h1>
-      <Form onSubmit={submitHandler}>
-        <FormGroup controlId="name" className="my-3">
-          <FormLabel>Name</FormLabel>
-          <FormControl
-            type="text"
-            placeholder="Enter Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </FormGroup>
-        <FormGroup controlId="email" className="my-3">
-          <FormLabel>Email Address</FormLabel>
-          <FormControl
-            type="email"
-            placeholder="Enter Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </FormGroup>
-        <FormGroup controlId="password" className="my-3">
-          <FormLabel>Password</FormLabel>
-          <FormControl
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </FormGroup>
-        <FormGroup controlId="confirmPassword" className="my-3">
-          <FormLabel>Confirm Password</FormLabel>
-          <FormControl
-            type="password"
-            placeholder="Confirm Password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
-        </FormGroup>
-        <Button
-          type="submit"
-          variant="primary"
-          className="mt-3"
-        >
-          Register
-        </Button>
-        {/*{isLoading && <Loader />} */}
-      </Form>
+      <FormGroup controlId="name" className="my-3">
+        <FormLabel>Name</FormLabel>
+        <FormControl
+          type="text"
+          placeholder="Enter Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+      </FormGroup>
+
+      <FormGroup controlId="email" className="my-3">
+        <FormLabel>Email Address</FormLabel>
+        <FormControl
+          type="email"
+          placeholder="Enter Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+      </FormGroup>
+
+      <FormGroup controlId="password" className="my-3">
+        <FormLabel>Password</FormLabel>
+        <FormControl
+          type="password"
+          placeholder="Enter Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </FormGroup>
+
+      <FormGroup controlId="confirmPassword" className="my-3">
+        <FormLabel>Confirm Password</FormLabel>
+        <FormControl
+          type="password"
+          placeholder="Confirm Password"
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+        />
+      </FormGroup>
+
+      <Button type="submit" variant="dark" className="mt-3" disabled={loading}>
+        {loading ? "Loading..." : "Register"}
+      </Button>
+
       <Row className="py-3">
         <Col>
-          Already have an account?{" "}
-          <Link to={"/login"}>
-            Login
-          </Link>
+          Have an Account? <Link to="/login">Login</Link>
         </Col>
       </Row>
-    </Container>
+    </Form>
   );
 };
 
-export default RegisterScreen;
+export default Register;

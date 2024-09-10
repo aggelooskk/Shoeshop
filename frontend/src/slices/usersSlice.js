@@ -1,4 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
 const initialState = {
   users: [], // List of users
@@ -7,16 +8,38 @@ const initialState = {
   error: null, // Error state
 };
 
+// Async thunk for logging in a user
+export const loginUser = createAsyncThunk(
+  "users/loginUser",
+  async (credentials, { rejectWithValue }) => {
+    try {
+      const response = await axios.post("/api/users/login", credentials);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data?.message || "Login failed");
+    }
+  }
+);
+
+// Async thunk for registering a new user
+export const registerUser = createAsyncThunk(
+  "users/registerUser",
+  async (userData, { rejectWithValue }) => {
+    try {
+      const response = await axios.post("/api/users/register", userData);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(
+        error.response?.data?.message || "Registration failed"
+      );
+    }
+  }
+);
+
 const usersSlice = createSlice({
   name: "users",
   initialState,
   reducers: {
-    registerUsers: (state, action) => {
-      state.users = action.payload;
-    },
-    registerUser: (state, action) => {
-      state.user = action.payload;
-    },
     setLoading: (state, action) => {
       state.loading = action.payload;
     },
@@ -38,16 +61,36 @@ const usersSlice = createSlice({
       state.users = state.users.filter((user) => user.id !== action.payload);
     },
   },
+  extraReducers: (builder) => {
+    builder
+      .addCase(loginUser.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(loginUser.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = action.payload;
+      })
+      .addCase(loginUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(registerUser.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(registerUser.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = action.payload;
+      })
+      .addCase(registerUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
+  },
 });
 
-export const {
-  registerUsers,
-  registerUser,
-  setLoading,
-  setError,
-  addUser,
-  updateUser,
-  removeUser,
-} = usersSlice.actions;
+export const { setLoading, setError, addUser, updateUser, removeUser } =
+  usersSlice.actions;
 
 export default usersSlice.reducer;
