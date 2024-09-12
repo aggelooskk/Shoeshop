@@ -27,6 +27,7 @@ const Login = () => {
     try {
       const resultAction = await dispatch(loginUser({ email, password }));
       if (loginUser.fulfilled.match(resultAction)) {
+        toast.success("Succesful Login");
         navigate("/");
       } else {
         toast.error(resultAction.payload);
@@ -60,7 +61,7 @@ const Login = () => {
       </FormGroup>
 
       <Button type="submit" variant="dark" className="mt-3" disabled={loading}>
-        {loading ? "Loading..." : "Sign In"}
+        {loading ? "Loading..." : "Login"}
       </Button>
 
       <Row className="py-3">
