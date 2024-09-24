@@ -10,7 +10,7 @@ import {
   FormLabel,
   FormControl,
 } from "react-bootstrap";
-import { registerUser } from "../slices/usersSlice";
+import { registerUser } from "../slices/userSlice";
 import { toast } from "react-toastify";
 
 const Register = () => {

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 import ProductCard from "../Components/ProductCard";
-import { fetchProducts } from "../slices/productsSlice";
+import { fetchProducts } from "../slices/productSlice";
 
 const ShopScreen = () => {
   const dispatch = useDispatch();

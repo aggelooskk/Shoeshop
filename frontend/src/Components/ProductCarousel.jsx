@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Carousel, Image } from "react-bootstrap";
-import { fetchProducts } from "../slices/productsSlice";
+import { fetchProducts } from "../slices/productSlice";
 import { Spinner } from "react-bootstrap";
 import pumarsx from "../images/pumarsx.jpg";
 import airmax270 from "../images/airmax270.jpg";

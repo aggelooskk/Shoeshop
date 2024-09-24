@@ -2,15 +2,15 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState = {
-  users: [], // List of users
-  user: null, // The currently logged-in user
-  loading: false, // Loading state for API calls
-  error: null, // Error state
+  users: [], // This can hold multiple users if needed in the future
+  user: null, // This holds the currently logged-in user
+  loading: false,
+  error: null,
 };
 
 // Async thunk for logging in a user
 export const loginUser = createAsyncThunk(
-  "users/loginUser",
+  "user/loginUser", // Changed from "users/loginUser" to "user/loginUser"
   async (credentials, { rejectWithValue }) => {
     try {
       const response = await axios.post("/api/users/login", credentials);
@@ -23,7 +23,7 @@ export const loginUser = createAsyncThunk(
 
 // Async thunk for registering a new user
 export const registerUser = createAsyncThunk(
-  "users/registerUser",
+  "user/registerUser", // Changed from "users/registerUser" to "user/registerUser"
   async (userData, { rejectWithValue }) => {
     try {
       const response = await axios.post("/api/users/register", userData);
@@ -36,8 +36,16 @@ export const registerUser = createAsyncThunk(
   }
 );
 
+export const logoutUser = createAsyncThunk(
+  "user/logoutUser", // Changed from "users/logoutUser" to "user/logoutUser"
+  async () => {
+    // Handle logout logic if any, e.g., clearing tokens or making an API call
+    return {};
+  }
+);
+
 const usersSlice = createSlice({
-  name: "users",
+  name: "user", // Changed from "users" to "user" because it's mainly managing individual user
   initialState,
   reducers: {
     setLoading: (state, action) => {
@@ -47,7 +55,7 @@ const usersSlice = createSlice({
       state.error = action.payload;
     },
     addUser: (state, action) => {
-      state.users.push(action.payload);
+      state.users.push(action.payload); // This manages the list of users
     },
     updateUser: (state, action) => {
       const index = state.users.findIndex(
@@ -69,7 +77,7 @@ const usersSlice = createSlice({
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.loading = false;
-        state.user = action.payload;
+        state.user = action.payload; // Set the logged-in user
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
@@ -81,11 +89,14 @@ const usersSlice = createSlice({
       })
       .addCase(registerUser.fulfilled, (state, action) => {
         state.loading = false;
-        state.user = action.payload;
+        state.user = action.payload; // Set the registered user
       })
       .addCase(registerUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+      })
+      .addCase(logoutUser.fulfilled, (state) => {
+        state.user = null; // Clear the logged-in user on logout
       });
   },
 });

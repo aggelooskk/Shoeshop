@@ -4,12 +4,12 @@ import { Navbar, Nav, Container, NavbarBrand } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import Badge from "react-bootstrap/Badge";
 
-
 const Header = () => {
-
   const totalQty = useSelector((state) =>
     state.cart.cartItems.reduce((acc, item) => acc + item.qty, 0)
   );
+
+  const { user } = useSelector((state) => state.user); 
 
   return (
     <header>
@@ -43,7 +43,15 @@ const Header = () => {
           >
             <Nav>
               <LinkContainer to="/account" className="ml-5">
-                <Nav.Link>ACCOUNT</Nav.Link>
+                <Nav.Link>
+                  ACCOUNT
+                  {user && user.name && (
+                    <Badge bg="success" className="ms-2">
+                      {user.name}{" "}
+                      {/* Display username as badge when logged in */}
+                    </Badge>
+                  )}
+                </Nav.Link>
               </LinkContainer>
               <LinkContainer to="/search" className="ml-5">
                 <Nav.Link>SEARCH</Nav.Link>
@@ -58,10 +66,9 @@ const Header = () => {
                       style={{
                         top: "10px",
                         right: "10px",
-                       
                       }}
                     >
-                      {totalQty}
+                      {totalQty} {/* Show cart quantity */}
                     </Badge>
                   )}
                 </Nav.Link>
