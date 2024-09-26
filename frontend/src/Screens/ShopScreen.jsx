@@ -7,7 +7,7 @@ import { fetchProducts } from "../slices/productSlice";
 
 const ShopScreen = () => {
   const dispatch = useDispatch();
-  const { products, status, error } = useSelector((state) => state.products);
+  const { products, status, error } = useSelector((state) => state.product);
 
   useEffect(() => {
     if (status === "idle") {

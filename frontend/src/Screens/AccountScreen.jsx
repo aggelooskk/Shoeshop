@@ -7,11 +7,11 @@ import { logoutUser } from "../slices/userSlice"; // Action from usersSlice
 const AccountScreen = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { user, loading, error } = useSelector((state) => state.user); // Access user, loading, and error
+  const { user, loading, error } = useSelector((state) => state.user);
 
   const handleLogout = () => {
-    dispatch(logoutUser()); // Dispatch logout action
-    navigate("/login"); // Redirect to login page
+    dispatch(logoutUser()); 
+    navigate("/"); 
   };
 
   return (

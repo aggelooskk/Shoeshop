@@ -10,11 +10,11 @@ const initialState = {
 
 // Async thunk for logging in a user
 export const loginUser = createAsyncThunk(
-  "user/loginUser", // Changed from "users/loginUser" to "user/loginUser"
+  "user/loginUser",
   async (credentials, { rejectWithValue }) => {
     try {
       const response = await axios.post("/api/users/login", credentials);
-      return response.data;
+      return response.data; // Assumed to return user data
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || "Login failed");
     }
@@ -23,11 +23,11 @@ export const loginUser = createAsyncThunk(
 
 // Async thunk for registering a new user
 export const registerUser = createAsyncThunk(
-  "user/registerUser", // Changed from "users/registerUser" to "user/registerUser"
+  "user/registerUser",
   async (userData, { rejectWithValue }) => {
     try {
       const response = await axios.post("/api/users/register", userData);
-      return response.data;
+      return response.data; // Assumed to return user data
     } catch (error) {
       return rejectWithValue(
         error.response?.data?.message || "Registration failed"
@@ -36,16 +36,14 @@ export const registerUser = createAsyncThunk(
   }
 );
 
-export const logoutUser = createAsyncThunk(
-  "user/logoutUser", // Changed from "users/logoutUser" to "user/logoutUser"
-  async () => {
-    // Handle logout logic if any, e.g., clearing tokens or making an API call
-    return {};
-  }
-);
+// Async thunk for logging out a user
+export const logoutUser = createAsyncThunk("user/logoutUser", async () => {
+  // Handle logout logic if any, e.g., clearing tokens or making an API call
+  return {}; // Could return any required payload if needed
+});
 
-const usersSlice = createSlice({
-  name: "user", // Changed from "users" to "user" because it's mainly managing individual user
+const userSlice = createSlice({
+  name: "user",
   initialState,
   reducers: {
     setLoading: (state, action) => {
@@ -55,7 +53,7 @@ const usersSlice = createSlice({
       state.error = action.payload;
     },
     addUser: (state, action) => {
-      state.users.push(action.payload); // This manages the list of users
+      state.users.push(action.payload);
     },
     updateUser: (state, action) => {
       const index = state.users.findIndex(
@@ -70,6 +68,7 @@ const usersSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    // Login
     builder
       .addCase(loginUser.pending, (state) => {
         state.loading = true;
@@ -83,6 +82,7 @@ const usersSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
+      // Register
       .addCase(registerUser.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -95,13 +95,15 @@ const usersSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
+      // Logout
       .addCase(logoutUser.fulfilled, (state) => {
         state.user = null; // Clear the logged-in user on logout
       });
   },
 });
 
+// Export actions for usage in components
 export const { setLoading, setError, addUser, updateUser, removeUser } =
-  usersSlice.actions;
+  userSlice.actions;
 
-export default usersSlice.reducer;
+export default userSlice.reducer;

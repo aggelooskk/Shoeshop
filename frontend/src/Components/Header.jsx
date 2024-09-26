@@ -46,9 +46,8 @@ const Header = () => {
                 <Nav.Link>
                   ACCOUNT
                   {user && user.name && (
-                    <Badge bg="success" className="ms-2">
-                      {user.name}{" "}
-                      {/* Display username as badge when logged in */}
+                    <Badge bg="secondary" className="ms-2">
+                      1
                     </Badge>
                   )}
                 </Nav.Link>

@@ -20,7 +20,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   
-  const { user, loading, error } = useSelector((state) => state.users);
+  const { loading } = useSelector((state) => state.user);
 
   const submitHandler = async (e) => {
     e.preventDefault();
