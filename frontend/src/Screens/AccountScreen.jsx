@@ -2,7 +2,8 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { Button, Row, Col, Container, Spinner } from "react-bootstrap";
-import { logoutUser } from "../slices/userSlice"; // Action from usersSlice
+import { logoutUser } from "../slices/userSlice";
+import { FaUserCircle } from "react-icons/fa";
 
 const AccountScreen = () => {
   const dispatch = useDispatch();
@@ -10,8 +11,8 @@ const AccountScreen = () => {
   const { user, loading, error } = useSelector((state) => state.user);
 
   const handleLogout = () => {
-    dispatch(logoutUser()); 
-    navigate("/"); 
+    dispatch(logoutUser());
+    navigate("/");
   };
 
   return (
@@ -27,10 +28,11 @@ const AccountScreen = () => {
             </p>
           )}
           {error && <p className="text-danger">{error}</p>}
-          {user && user.name ? ( // Check if the user is logged in
+          {user && user.name ? (
             <>
-              <h3>Welcome Back, {user.name}!</h3> {/* Display user's name */}
-              <h5>Email: {user.email}</h5> {/* Display user's email */}
+              <FaUserCircle size={100} className="text-muted mb-3" />
+              <h3>Welcome Back, {user.name}!</h3>
+              <h5>Email: {user.email}</h5>
               <Button variant="danger" onClick={handleLogout}>
                 Logout
               </Button>

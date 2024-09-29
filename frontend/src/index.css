@@ -12,6 +12,7 @@ main {
   min-height: 90vh;
 }
 
+
 .rating-text {
   font-size: 0.8rem;
   font-weight: 600;
@@ -43,4 +44,8 @@ main {
 .carousel-item {
   max-height: 600px; /* Adjust this to fit your needs */
   overflow: hidden;
-}
+  display: flex;
+  justify-content: center; /* Center the content horizontally */
+  align-items: center;
+}            
+

@@ -19,7 +19,7 @@ const Login = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
+
   const { loading } = useSelector((state) => state.user);
 
   const submitHandler = async (e) => {
@@ -27,7 +27,7 @@ const Login = () => {
     try {
       const resultAction = await dispatch(loginUser({ email, password }));
       if (loginUser.fulfilled.match(resultAction)) {
-        toast.success("Succesful Login");
+        toast.success("Succesfull login");
         navigate("/");
       } else {
         toast.error(resultAction.payload);
